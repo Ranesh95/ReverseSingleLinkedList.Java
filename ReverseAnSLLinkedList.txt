@@ -1,0 +1,52 @@
+public class ReverseLink {
+    static Node head;
+    private static class Node
+    {
+       private int data;
+       private Node next;
+        public Node(int data)
+        {
+
+            this.data =data;
+            this.next =null;
+        }
+    }
+    public static void display()
+    {
+        Node temp =head;
+        while (temp!=null) {
+
+           System.out.print(temp.data+" "); 
+           temp =temp.next;
+        }
+       
+    }
+    public static Node reverseList( Node head)
+    {
+        Node prev  =head.next;
+        Node next =head.next.next;
+        head.next =null;
+        while (prev!=null) {
+            prev.next =head;
+            head =prev;
+            prev =next;
+            if(next!=null)
+            next =next.next;
+        }
+        return head;
+    }
+    public static void main(String[] args) {
+        ReverseLink obj =new ReverseLink();
+        obj.head =new Node(1);
+        Node sec =new Node(2);
+        Node thr =new Node(3);
+        Node fr =new Node(4);
+
+        obj.head.next =sec;
+        sec.next =thr;
+        thr.next =fr;
+        //obj.display();
+        obj.head =ReverseLink.reverseList(ReverseLink.head);
+        obj.display();
+    }
+}
